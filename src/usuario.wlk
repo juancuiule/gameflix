@@ -61,7 +61,7 @@ object usuario {
 	}
 	//Delegar la actualización de la suscripción a mi suscripción actual
 	method actualizarSuscripcion(unaSuscripcion){
-		tipoSuscripcion.actualizarSuscripcion(self,unaSuscripcion)
+		self.cambiarSuscripcion(unaSuscripcion)
 	}
 	//El dinero alcanza para pagar un monto
 	method puedePagar(unCosto){

@@ -6,16 +6,6 @@ class Suscripcion {
 	constructor(unCosto){
 		costo = unCosto
 	}
-	//Cuando actualizo mi suscripción a una nueva, pago la diferencia entre el valor de la actual con la nueva, el costo mínimo es 0 (Gameflix no devuelve dinero)
-	method actualizarSuscripcion(unUsuario,unaSuscripcion){
-		try{
-			unUsuario.pagar(0.max(unaSuscripcion.costo()-costo))
-			unUsuario.cambiarSuscripcion(unaSuscripcion)
-		}catch e : Exception{
-			throw new Exception("El usuario no puede pagar la nueva suscripcion ya que es muy cara")
-		}
-		
-	}
 	method costo(){
 		return costo
 	}
