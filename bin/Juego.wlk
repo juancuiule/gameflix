@@ -41,7 +41,7 @@ class MOBA inherits Juego{
 }
  class Terrofifico inherits Juego{
  	method jugar(usuario,horas){
- 		usuario.cambiarSuscripcion(new SuscripcionPrueba())
+ 		usuario.cambiarSuscripcion(suscripcionPrueba)
  	}
  }
  class Estrategico inherits Juego{

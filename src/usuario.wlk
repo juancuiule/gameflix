@@ -67,7 +67,4 @@ object usuario {
 	method puedePagar(unCosto){
 		return dinero >= unCosto
 	}
-	
-
-
 }
