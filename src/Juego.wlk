@@ -11,6 +11,7 @@ class Juego {
 		precio = unPrecio
 	}
 	
+	//------------Lógica compartida entre todos los juegos---------//
 	method esJuegoBarato(){
 		return self.precioMenorA(30)
 	}
@@ -23,7 +24,7 @@ class Juego {
 	method esCategoria(unaCategoria){
 		return categoria == unaCategoria
 	}
-
+	//------------Lógica compartida entre todos los juegos---------//
 
 }
 
@@ -40,7 +41,7 @@ class MOBA inherits Juego{
 }
  class Terrofifico inherits Juego{
  	method jugar(usuario,horas){
- 		usuario.cambiarSuscripcion(suscripcionPrueba)
+ 		usuario.cambiarSuscripcion(new SuscripcionPrueba())
  	}
  }
  class Estrategico inherits Juego{

@@ -6,23 +6,22 @@ class Suscripcion {
 	constructor(unCosto){
 		costo = unCosto
 	}
-		
-	method cobrarSuscripcion(unUsuario){
-		unUsuario.pagarSuscripcion(costo)
-	}
+	//Cuando actualizo mi suscripción a una nueva, pago la diferencia entre el valor de la actual con la nueva, el costo mínimo es 0 (Gameflix no devuelve dinero)
 	method actualizarSuscripcion(unUsuario,unaSuscripcion){
-		if(unUsuario.puedePagar(0.max(unaSuscripcion.costo() - costo))){
+		try{
 			unUsuario.pagar(0.max(unaSuscripcion.costo()-costo))
 			unUsuario.cambiarSuscripcion(unaSuscripcion)
-		}else{
-			throw new Exception("No puede pagar una suscripcion mas cara en este momento")
+		}catch e : Exception{
+			throw new Exception("El usuario no puede pagar la nueva suscripcion ya que es muy cara")
 		}
+		
 	}
 	method costo(){
 		return costo
 	}
 }
 
+//Clase abstracta para la suscripción de prueba y la infantil que comparten comportamiento
 class SuscripcionLimitada inherits Suscripcion{
 	var categoriaPermitida
 	

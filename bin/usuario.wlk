@@ -1,72 +1,69 @@
 import gameflix.*
 import Suscripcion.*
-import Juego.*
 
-class Usuario {
+object usuario {
 	var tipoSuscripcion
 	var dinero
 	var humor
 	
-	constructor(unTipoSuscripcion,unDinero,unHumor) {
-		tipoSuscripcion = unTipoSuscripcion
-		dinero = unDinero
-		humor = unHumor
-	}
-	
-	method juegosDeGameflix() {
+	//Retorna todos los juegos de gameflix
+	method juegosDeGameflix(){
 		return gameflix.juegos()
 	}
-	
+	//Retorna los juegos que mi suscripcion permite jugar
 	method juegosDeMiSubscripcion(){
 		return tipoSuscripcion.juegosSuscripcion()
 	}
-	
-	method cobrarSubscripcion() {
-		tipoSuscripcion.cobrarSuscripcion(self)
-	}
-	
-	method jugarJuego(unJuego) {
-		if(self.esJuegoPermitido(unJuego)) {
+	//Juego un juego está permitido por mi suscripcion, de lo contrario tiro una excepcion
+	method jugarJuego(unJuego){
+		if(self.esJuegoPermitido(unJuego)){
 			unJuego.jugar(self)
-		} else {
+		}else{
 			throw new Exception("No puedo jugar a este juego")
 		}
-	}	
-	
-	method esJuegoPermitido(unJuego) {
+	}
+	//Indica si un juego está permitido por mi suscripcion
+	method esJuegoPermitido(unJuego){
 		return tipoSuscripcion.esJuegoPermitido(unJuego)
 	}
-	
-	method reducirHumor(unaCantidad) {
+	//Reducir humor según una cantidad
+	method reducirHumor(unaCantidad){
 		humor =- unaCantidad
 	}
-	
-	method comprarCosmeticos(unPrecio) {
+	//Compra de cosméticos para el MOBA
+	method comprarCosmeticos(unPrecio){
 		self.pagar(unPrecio)
 	}
-	
-	method cambiarSuscripcion(unaSuscripcion) {
+	//Abstracción más expresiva
+	method cambiarSuscripcion(unaSuscripcion){
 		tipoSuscripcion = unaSuscripcion
 	}
-	
-	method aumentarHumor(horas) {
+	//Aumentar humor según horas
+	method aumentarHumor(horas){
 		humor =+ horas*5
 	}
-	
-	method pagarSuscripcion(costo) {
-		if(dinero >= costo) {
-			self.pagar(costo)
-		} else {
+	//Intento pagar la suscripción de lo contrario cambio mi suscripcion a prueba
+	method pagarSuscripcion(costo){
+		try{
+			self.pagar(tipoSuscripcion.costo())
+		}catch e : Exception{
 			self.cambiarSuscripcion(suscripcionPrueba)
 		}
 	}
-	
+	//Abstracción para pagar cualquier cosa, tira excepción atrapable si el dinero no alcanza para pagar el monto
 	method pagar(unaCantidad){
-		dinero =- unaCantidad
+		if(self.puedePagar(unaCantidad)){
+			dinero =- unaCantidad
+		}else{
+			throw new Exception("No alcanza el dinero del usuario para pagar")
+		}
+	
 	}
+	//Delegar la actualización de la suscripción a mi suscripción actual
 	method actualizarSuscripcion(unaSuscripcion){
 		tipoSuscripcion.actualizarSuscripcion(self,unaSuscripcion)
 	}
+	//El dinero alcanza para pagar un monto
 	method puedePagar(unCosto){
 		return dinero >= unCosto
 	}
