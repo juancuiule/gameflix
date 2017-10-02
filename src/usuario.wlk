@@ -1,10 +1,16 @@
 import gameflix.*
 import Suscripcion.*
 
-object usuario {
+class Usuario {
 	var tipoSuscripcion
 	var dinero
 	var humor
+	
+	constructor(unTipoSuscripcion,unDinero,unHumor){
+		tipoSuscripcion = unTipoSuscripcion
+		dinero = unDinero
+		humor = unHumor
+	}
 	
 	method juegosDeGameflix(){
 		return gameflix.juegos()

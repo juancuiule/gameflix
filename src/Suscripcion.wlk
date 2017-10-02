@@ -7,8 +7,8 @@ class Suscripcion {
 		unUsuario.pagarSuscripcion(costo)
 	}
 	method actualizarSuscripcion(unUsuario,unaSuscripcion){
-		if(unUsuario.puedePagar(unaSuscripcion.costo() - costo)){
-			unUsuario.pagar(unaSuscripcion.costo()-costo)
+		if(unUsuario.puedePagar(0.max(unaSuscripcion.costo() - costo))){
+			unUsuario.pagar(0.max(unaSuscripcion.costo()-costo))
 			unUsuario.cambiarSuscripcion(unaSuscripcion)
 		}else{
 			throw new Exception("No puede pagar una suscripcion mas cara en este momento")
