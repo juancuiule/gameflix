@@ -2,7 +2,7 @@
 object gameflix {
 
 	var usuarios
-	var juegos
+	var juegos = #{}
 	
 	method juegos(){
 		return juegos
